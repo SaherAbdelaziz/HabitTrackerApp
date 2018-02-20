@@ -44,7 +44,20 @@ public class MainActivity extends AppCompatActivity {
         displayDatabase();
     }
 
-    private void displayDatabase() {
+    private void insert() {
+        SQLiteDatabase db = data_base.getWritableDatabase();
+        ContentValues my_value1 = new ContentValues();
+        ContentValues my_value2 = new ContentValues();
+        my_value1.put(HabitEntry.COLUMN_NAME, "eat cheese");
+        my_value1.put(HabitEntry.COLUMN_NUMBER_OF_TIMES, 1);
+        my_value2.put(HabitEntry.COLUMN_NAME, "drink juice");
+        my_value2.put(HabitEntry.COLUMN_NUMBER_OF_TIMES, 2);
+        db.insert(HabitEntry.TABLE_NAME, null, my_value1);
+        db.insert(HabitEntry.TABLE_NAME, null, my_value2);
+    }
+
+
+    private Cursor read() {
         SQLiteDatabase db = data_base.getReadableDatabase();
 
         String[] projection = {
@@ -55,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
         };
 
         Cursor cursor = db.query(HabitEntry.TABLE_NAME, projection, null, null, null, null, null);
+        return cursor;
+    }
+
+    private void displayDatabase() {
+        Cursor cursor = read();
 
         TextView displayView = (TextView) findViewById(R.id.textView1);
 
@@ -92,17 +110,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void insert() {
-        SQLiteDatabase db = data_base.getWritableDatabase();
-        ContentValues my_value1 = new ContentValues();
-        ContentValues my_value2 = new ContentValues();
-        my_value1.put(HabitEntry.COLUMN_NAME, "eat cheese");
-        my_value1.put(HabitEntry.COLUMN_NUMBER_OF_TIMES, 1);
-        my_value2.put(HabitEntry.COLUMN_NAME, "drink juice");
-        my_value2.put(HabitEntry.COLUMN_NUMBER_OF_TIMES, 2);
-        db.insert(HabitEntry.TABLE_NAME, null, my_value1);
-        db.insert(HabitEntry.TABLE_NAME, null, my_value2);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
