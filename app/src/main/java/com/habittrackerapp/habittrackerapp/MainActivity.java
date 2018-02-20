@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = data_base.getWritableDatabase();
         ContentValues my_value1 = new ContentValues();
         ContentValues my_value2 = new ContentValues();
-        my_value1.put(HabitEntry.COLUMN_NAME, "eat cheese");
+        my_value1.put(HabitEntry.COLUMN_NAME, "walk my dog");
         my_value1.put(HabitEntry.COLUMN_NUMBER_OF_TIMES, 1);
-        my_value2.put(HabitEntry.COLUMN_NAME, "drink juice");
+        my_value2.put(HabitEntry.COLUMN_NAME, "swim");
         my_value2.put(HabitEntry.COLUMN_NUMBER_OF_TIMES, 2);
         db.insert(HabitEntry.TABLE_NAME, null, my_value1);
         db.insert(HabitEntry.TABLE_NAME, null, my_value2);
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         TextView displayView = (TextView) findViewById(R.id.textView1);
 
         try {
-            displayView.setText("habit tracker  include : " + cursor.getCount() + " rows.\n\n");
+            displayView.setText("habit tracker include : " + cursor.getCount() + " rows.\n\n");
             displayView.append(HabitEntry._ID + "   " +
                     HabitEntry.COLUMN_NAME + "   " +
                     HabitEntry.COLUMN_START_DATE + "   " +
